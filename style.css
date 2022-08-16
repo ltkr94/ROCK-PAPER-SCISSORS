@@ -1,0 +1,100 @@
+body {
+    display: flex;
+    justify-content: center;
+    height: 95vh;
+    padding: 0;
+    background-color: #181818;
+}
+
+.game_box {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 40vw;
+    padding: 3%;
+    background-color: rgb(25, 39, 52);
+    border: 2px solid cornflowerblue;
+    border-radius: 10px;
+}
+
+.fight_panel {
+    height: 65%;
+}
+
+.animation_panel {
+    height: 90%;
+    padding: 3%;
+    background-color: cornflowerblue;
+    border-radius: 10px;
+}
+
+.lives_panel {
+    display: flex;
+    justify-content: space-between;
+}
+
+.player_lives,
+.npc_lives {
+    display: flex;
+    width: 48%;
+    height: 100%;
+    flex-direction: column-reverse;
+}
+
+.npc_lives {
+    align-items: flex-end;
+}
+
+.hearts {
+    display: flex;
+    justify-content: space-evenly;
+    width: 52%;
+}
+
+.heart1,
+.heart2,
+.heart3 {
+    width: 28%;
+}
+
+.heart1>img,
+.heart2>img,
+.heart3>img {
+    width: 100%;
+    height: auto;
+}
+
+.weapons_panel {
+    display: flex;
+    justify-content: space-around;
+}
+
+button.rock,
+button.paper,
+button.scissors {
+    min-width: 20%;
+    aspect-ratio: 1 / 1;
+    background-size: cover;
+    border-radius: 100%;
+}
+
+button.rock {
+    background-image: url('./img/rock.png');
+}
+
+button.paper {
+    background-image: url('./img/paper.png');
+}
+
+button.scissors {
+    background-image: url('./img/scissors.png');
+}
+
+button {
+    border: none;
+}
+
+button:focus {
+    border: none;
+    outline: none;
+}
