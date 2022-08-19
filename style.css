@@ -10,7 +10,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    width: 35vw;
+    width: 30vw;
     padding: 3%;
     background-color: rgb(25, 39, 52);
     border: 2px solid cornflowerblue;
@@ -100,8 +100,8 @@ button.scissors {
 
 button.start {
     align-self: center;
-    margin-right: 10%;
-    margin-left: 10%;
+    margin-right: 11.5%;
+    margin-left: 11.5%;
     width: 8vw;
     height: 8vw;
     border-radius: 100%;

@@ -1,8 +1,24 @@
+const startButton = document.querySelector("button.start");
+const animationPanel = document.querySelector(".animation_panel");
+const weaponButtons = document.querySelectorAll(".weapons_panel > button");
+let playerSelection = "";
 let playerScore = 0;
 let computerScore = 0;
 let lose = "you lose game!";
 let tie = "tie game!";
 let win = "you win game!";
+
+startButton.addEventListener("click", () => {
+  location.reload();
+});
+console.log("NEW GAME!");
+weaponButtons.forEach((weapon) => {
+  weapon.addEventListener("click", (e) => {
+    //console.log(e.currentTarget.className);
+    playerSelection = e.currentTarget.className;
+    checkScore(); //game(playerSelection);
+  });
+});
 
 function computerPlay() {
   let rndNum = Math.floor(Math.random() * 3) + 1;
@@ -58,31 +74,27 @@ function playRound(playerSelection, computerSelection) {
   //playerSelection parameter case-insensitive (rock, Rock, RoCk)
   //return "You Lose! Paper beats Rock"
 }
-function game() {
-  let playerSelection = "";
-  try {
-    playerSelection = prompt(
-      "choose 'rock' or 'paper' or 'scissors'"
-    ).toLowerCase();
-  } catch (ex) {
-    ex = "wrong value! input: 'rock' or 'paper' or 'scissors'";
-    alert(ex);
-  }
-  return alert(playRound(playerSelection, computerPlay()));
+
+function game(playerSelection) {
+  //KLASA POZNIEJ DO USUNIECIA
+  //console.log(playerSelection + " test");
+
+  return console.log(playRound(playerSelection, computerPlay()));
 }
 
 /*let roundCounter = 0;
 game ? roundCounter++ : roundCounter;*/
 
-for (let i = 0; ; i++) {
+//for (let i = 0; ; i++) {
+function checkScore() {
   if (computerScore === playerScore || (playerScore < 3 && computerScore < 3)) {
-    game();
+    console.log(playRound(playerSelection, computerPlay())); //zamiast game(playerScore)
   } else {
     playerScore === computerScore
-      ? alert("END GAME! TIE GAME!!!!")
+      ? console.log("END GAME! TIE GAME!!!!")
       : playerScore > computerScore
-      ? alert("END GAME! YOU WIN THE GAME!!!!")
-      : alert("END GAME! YOU LOSE THE GAME!!!!");
-    break;
+      ? console.log("END GAME! YOU WIN THE GAME!!!!")
+      : console.log("END GAME! YOU LOSE THE GAME!!!!");
   }
 }
+//}
