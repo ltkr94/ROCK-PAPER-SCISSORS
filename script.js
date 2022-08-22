@@ -1,12 +1,17 @@
 const startButton = document.querySelector("button.start");
 const animationPanel = document.querySelector(".animation_panel");
 const weaponButtons = document.querySelectorAll(".weapons_panel > button");
+const hearts = document.querySelectorAll("img.heart");
 let playerSelection = "";
 let playerScore = 0;
 let computerScore = 0;
 let lose = "you lose game!";
 let tie = "tie game!";
 let win = "you win game!";
+let playerCounter = 3;
+let computerCounter = 2;
+let tmpc = 0;
+let tmpp = 0;
 
 startButton.addEventListener("click", () => {
   location.reload();
@@ -16,7 +21,11 @@ weaponButtons.forEach((weapon) => {
   weapon.addEventListener("click", (e) => {
     //console.log(e.currentTarget.className);
     playerSelection = e.currentTarget.className;
-    checkScore(); //game(playerSelection);
+    //2. checkScore(); //game(playerSelection);
+    tmpc = computerScore;
+    tmpp = playerScore;
+    console.log(playRound(playerSelection, computerPlay()));
+    checkScore();
   });
 });
 
@@ -35,6 +44,7 @@ function computerPlay() {
   //return rock/paper/scissors
 }
 function playRound(playerSelection, computerSelection) {
+  heartsAnimation_add();
   if (computerSelection === "rock") {
     switch (playerSelection) {
       case "rock":
@@ -68,27 +78,20 @@ function playRound(playerSelection, computerSelection) {
       case "scissors":
         return tie;
     }
-  } else {
-    return "wrong value";
   }
-  //playerSelection parameter case-insensitive (rock, Rock, RoCk)
-  //return "You Lose! Paper beats Rock"
 }
-
-function game(playerSelection) {
-  //KLASA POZNIEJ DO USUNIECIA
-  //console.log(playerSelection + " test");
-
-  return console.log(playRound(playerSelection, computerPlay()));
-}
+//playerSelection parameter case-insensitive (rock, Rock, RoCk)
+//return "You Lose! Paper beats Rock"
 
 /*let roundCounter = 0;
 game ? roundCounter++ : roundCounter;*/
 
 //for (let i = 0; ; i++) {
 function checkScore() {
+  removeHeart();
   if (computerScore === playerScore || (playerScore < 3 && computerScore < 3)) {
-    console.log(playRound(playerSelection, computerPlay())); //zamiast game(playerScore)
+    //1. console.log(playRound(playerSelection, computerPlay()));
+    console.log("test test test test test");
   } else {
     playerScore === computerScore
       ? console.log("END GAME! TIE GAME!!!!")
@@ -97,4 +100,27 @@ function checkScore() {
       : console.log("END GAME! YOU LOSE THE GAME!!!!");
   }
 }
-//}
+
+function heartsAnimation_add() {
+  hearts.forEach((heart) => {
+    heart.classList.add("shake");
+  });
+}
+
+hearts.forEach((heart) => {
+  heart.addEventListener("animationend", (e) => {
+    heart.classList.remove("shake"); //USUNAC EFEKT (LISTENER) PO ZAKACZENIU GRY
+  });
+});
+
+function removeHeart() {
+  if (tmpc < computerScore) {
+    playerCounter--;
+    hearts[playerCounter].remove();
+    console.log("AAAAAAAA: " + playerCounter);
+  } else if (tmpp < playerScore) {
+    computerCounter++;
+    hearts[computerCounter].remove();
+    console.log("bbbbbbbbb: " + computerCounter);
+  }
+}
