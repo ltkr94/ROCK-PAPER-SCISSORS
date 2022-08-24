@@ -38,8 +38,6 @@ window.setInterval(() => {
   blink.style.visibility = "visible";
 }, 1300);
 
-//let animation = new heartsAnimation();
-
 startButton.addEventListener("click", () => {
   resetValues();
   main();
@@ -53,32 +51,36 @@ function main() {
     weapon.addEventListener("click", weaponsReadValueEvent);
   });
 
+  //----------------READ PLAYER CHOICE, PRINT MESSAGE...------------------
   function weaponsReadValueEvent(e) {
-    playerSelection = e.currentTarget.className;
-    tmpc = computerScore;
-    tmpp = playerScore;
-    let computerSelection = computerPlay();
-    //console.log(e);
-    //console.log(playRound(playerSelection, computerPlay()));
-    printMessage(playerSelection + " ", 1500);
-    printMessage("vs " + computerSelection + " ", 1500);
-    printMessage(playRound(playerSelection, computerSelection) + " ", 1700);
-    checkScore();
+    if (playText.textContent == "" || playText.textContent == "_") {
+      playerSelection = e.currentTarget.className;
+      tmpc = computerScore;
+      tmpp = playerScore;
+      let computerSelection = computerPlay();
+      printMessage(playerSelection + " ", 2000);
+      printMessage("vs " + computerSelection + " ", 2000);
+      printMessage(playRound(playerSelection, computerSelection) + " ", 2000);
+      checkScore();
+    }
   }
 
+  //----------------/READ PLAYER CHOICE, PRINT MESSAGE...-----------------
+
+  //------------------------PRINT MESSAGES FUNCTION-----------------------
   function printMessage(value, time) {
     for (let i = 0; i < value.length; i++) {
       playText.textContent += value[i];
     }
-    console.log(time);
     setTimeout(() => {
       playText.textContent = "";
     }, time);
   }
+  //-----------------------/PRINT MESSAGES FUNCTION-----------------------
 
+  //-----------------------RANDOM COMPUTER CHOICE-------------------------
   function computerPlay() {
     let rndNum = Math.floor(Math.random() * 3) + 1;
-    //console.log(rndNum);
     switch (rndNum) {
       case 1:
         return "rock";
@@ -90,6 +92,9 @@ function main() {
     //computer play logic
     //return rock/paper/scissors
   }
+  //----------------------/RANDOM COMPUTER CHOICE------------------------
+
+  //---------------COMPARE CHOICES AND RETURN ROUND WINNER---------------
   function playRound(playerSelection, computerSelection) {
     //heartsAnimation("player");
     if (computerSelection === "rock") {
@@ -133,6 +138,9 @@ function main() {
       }
     }
   }
+  //--------------/COMPARE CHOICES AND RETURN ROUND WINNER---------------
+
+  //--------------------REMOVE STYLES AFTER GAME OVER--------------------
   function styleGO() {
     hearts.forEach((heart) => {
       heart.style.filter = "grayscale()";
@@ -140,8 +148,11 @@ function main() {
     weaponButtons.forEach((weapon) => {
       weapon.style.filter = "grayscale()";
     });
+    animationPanel.classList.remove("animation_panel_on");
   }
+  //-------------------/REMOVE STYLES AFTER GAME OVER---------------------
 
+  //-----------------COMPARE SCORES - WHEN TO FINISH GAME-----------------
   function checkScore() {
     removeHeart();
     if (
@@ -168,7 +179,9 @@ function main() {
       printMessage("GAME OVER! YOU LOSE!!!!", 2000);
     }
   }
+  //-----------------/COMPARE SCORES - WHEN TO FINISH GAME----------------
 
+  //----------------ADD AND REMOVE HEARTS IMAGES ANIMATION----------------
   function heartsAnimation(value) {
     if (value == "player") {
       playerHearts.forEach((heart) => {
@@ -185,7 +198,9 @@ function main() {
       });
     });
   }
+  //---------------/ADD AND REMOVE HEARTS IMAGES ANIMATION----------------
 
+  //-----------------------------DELETE HEARTS----------------------------
   function removeHeart() {
     if (tmpc < computerScore) {
       playerCounter--;
@@ -196,7 +211,9 @@ function main() {
     }
   }
 }
+//-----------------------------/DELETE HEARTS----------------------------
 
+//------------------------RESET TO DEFAULT SETTINGS----------------------
 function resetValues() {
   playerScore = 0;
   computerScore = 0;
@@ -217,3 +234,4 @@ function resetValues() {
   });
   playText.textContent = "";
 }
+//------------------------/RESET TO DEFAULT SETTINGS----------------------
