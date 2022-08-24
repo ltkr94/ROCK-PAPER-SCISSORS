@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Silkscreen&display=swap');
+
 body {
     display: flex;
     justify-content: flex-start;
@@ -7,6 +9,7 @@ body {
 }
 
 .game_box {
+    font-family: 'Silkscreen', cursive;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -24,17 +27,40 @@ body {
 .animation_panel {
     height: 90%;
     padding: 3%;
-    background-color: cornflowerblue;
-    border: 4px solid rgb(138, 169, 224);
     border-radius: 10px;
-    box-shadow: 0px 10px 40px #555;
-
-
+    border: 4px solid rgb(138, 169, 224);
+    background-color: rgb(52, 77, 125);
+    color: lightgray;
 }
+
+.animation_panel_on {
+    background-color: cornflowerblue;
+    box-shadow: 0px 10px 40px #555;
+}
+
+img.heart {
+    filter: grayscale();
+}
+
+
 
 .lives_panel {
     display: flex;
     justify-content: space-between;
+    width: 100%;
+    height: 10%;
+    padding-bottom: 2%;
+}
+
+.result {
+    width: 100%;
+    height: 85%;
+}
+
+.result>p {
+    text-align: center;
+    margin-top: 35%;
+    font-size: 130%;
 }
 
 .player_lives,
@@ -122,6 +148,10 @@ body {
 .weapons_panel {
     display: flex;
     justify-content: space-around;
+}
+
+.weapons_panel>button {
+    filter: grayscale();
 }
 
 button.rock,
